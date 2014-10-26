@@ -1,5 +1,7 @@
-var count = 0;
+var loadedCount = 0;
+var scriptsToLoad = ['http://www.codehelper.io/api/ips/?js', 'https://cdn.firebase.com/js/client/1.1.2/firebase.js']
 
+// TO 
 function loadScript(url, callback)
 {
     // Adding the script tag to the head as suggested before
@@ -10,14 +12,22 @@ function loadScript(url, callback)
 	    
 	    // Then bind the event to the callback function.
 	    // There are several events for cross browser compatibility.
-	    script.onreadystatechange = callback;
+	    //script.onreadystatechange = callback;
 	    script.onload = callback;
 
 	    // Fire the loading
 	    head.appendChild(script);
 }
 
-var logFunction = function() {
+function scriptLoaded() {
+	loadedCount++;
+	console.log("scriptLoaded function begins... loadedCount = " + loadedCount);
+	if (loadedCount>=scriptsToLoad.length) {
+		logInFB();
+	};
+}
+
+var logInFB = function() {
 	console.log("logFunction begins...");
 	var ineniBtbLog = new Firebase("https://ineni-btb.firebaseio.com/log/");
 	var ineniBtbApps = new Firebase("https://ineni-btb.firebaseio.com/apps/");
@@ -28,8 +38,10 @@ var logFunction = function() {
 	ineniBtbApps.set({appID: appID})
 }
 
+for (var i = 0; i < scriptsToLoad.length; i++) {
+ 	loadScript(scriptsToLoad[i], scriptLoaded)	
+ };
 
-loadScript('http://www.codehelper.io/api/ips/?js', logFunction);
 
 
 // TO RETRIEVE A DATE
