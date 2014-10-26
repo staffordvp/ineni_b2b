@@ -22,9 +22,7 @@ function loadScript(url, callback)
 function scriptLoaded() {
 	loadedCount++;
 	console.log("scriptLoaded function begins... loadedCount = " + loadedCount);
-	if (loadedCount>=scriptsToLoad.length) {
-		logInFB();
-	};
+	if (loadedCount>=scriptsToLoad.length) logInFB();
 }
 
 var logInFB = function() {
