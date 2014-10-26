@@ -5,18 +5,18 @@ var scriptsToLoad = ['http://www.codehelper.io/api/ips/?js', 'https://cdn.fireba
 function loadScript(url, callback)
 {
     // Adding the script tag to the head as suggested before
-	    var head = document.getElementsByTagName('head')[0];
-	    var script = document.createElement('script');
-	    script.type = 'text/javascript';
-	    script.src = url;	
-	    
-	    // Then bind the event to the callback function.
-	    // There are several events for cross browser compatibility.
-	    //script.onreadystatechange = callback;
-	    script.onload = callback;
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;	
+    
+    // Then bind the event to the callback function.
+    // There are several events for cross browser compatibility.
+    //script.onreadystatechange = callback;
+    script.onload = callback;
 
-	    // Fire the loading
-	    head.appendChild(script);
+    // Fire the loading
+    head.appendChild(script);
 }
 
 function scriptLoaded() {
@@ -28,8 +28,8 @@ function scriptLoaded() {
 }
 
 var logInFB = function() {
-	console.log("logFunction begins...");
-	var ineniBtbLog = new Firebase("https://ineni-btb.firebaseio.com/log/");
+	console.log("logInFB begins...");
+	var ineniBtbLog = new Firebase("https://ineni-btb.firebaseio.com/sessionlog/");
 	var ineniBtbApps = new Firebase("https://ineni-btb.firebaseio.com/apps/");
 	var appID = "PROJ0046 BarangarooSthFeatureApp";
 
